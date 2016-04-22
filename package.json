@@ -1,0 +1,23 @@
+{
+  "name": "assassin-slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielLuu/assassin-slack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielLuu/assassin-slack/issues"
+  },
+  "homepage": "https://github.com/DanielLuu/assassin-slack#readme",
+  "dependencies": {
+    "slackbots": "^0.5.1",
+    "sqlite3": "^3.1.3"
+  }
+}
