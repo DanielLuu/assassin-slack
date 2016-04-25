@@ -34,16 +34,16 @@ AssassinBot.prototype._onMessage = function (message) {
         this._isChannelConversation(message) &&
         !this._isFromBot(message)
     ) {
-      if(message.text.toLowerCase().includes("start") &&
+      if(message.text.toLowerCase().indexOf("start") > -1 &&
         this._isMentioningAssassin(message)){
 	      this._init();
-      } else if(message.text.toLowerCase().includes("join")){
+      } else if(message.text.toLowerCase().indexOf("join") > -1){
       	this._join(message);
-      } else if(message.text.toLowerCase().includes("done")){
+      } else if(message.text.toLowerCase().indexOf("done") > -1){
       	this._done();
-      } else if(message.text.toLowerCase().includes("kill")){
+      } else if(message.text.toLowerCase().indexOf("kill") > -1){
       	this._kill(message);
-      } else if(message.text.toLowerCase().includes("reset")){
+      } else if(message.text.toLowerCase().indexOf("reset") > -1){
       	this._reset();
 				this.postMessageToChannel(this.channels[0].name, 'The game has been reset!', {as_user: true});
       }
@@ -57,19 +57,35 @@ AssassinBot.prototype._init = function () {
 
 AssassinBot.prototype._join = function (message) {
 	if(this.gameStarted === false) {
-		console.log('Joined');
 		var joinUser;
 	  this.users.map(function (user) {
 	  	if(user.id === message.user) {
 		  	joinUser = user;
 		  }
 	  });
-		this.players.push(joinUser);
-		this.postMessageToChannel(this.channels[0].name, joinUser.name + ' has joined the game.  '+
-			'Type done when everyone has joined.',{as_user: true});
+    if(this.players.indexOf(joinUser) === -1) {
+  		console.log('Joined');
+  		this.players.push(joinUser);
+  		this.postMessageToChannel(this.channels[0].name, joinUser.name + ' has joined the game.  '+
+  			'Type done when everyone has joined.',{as_user: true});
+    }
 	} else {
 		this.postMessageToChannel(this.channels[0].name, 'Sorry!  The game has already started.',{as_user: true});
 	}
+};
+
+AssassinBot.prototype._leave = function (message) {
+  console.log('Joined');
+  var leaveUser;
+  this.users.map(function (user) {
+    if(user.id === message.user) {
+      leaveUser = user;
+    }
+  });
+  if(this.players.indexOf(leaveUser) > -1) {
+    this.players.splice(leaveUser, 1);
+    this.postMessageToChannel(this.channels[0].name, leaveUser.name + ' has left the game.' ,{as_user: true});
+  }
 };
 
 AssassinBot.prototype._done = function () {
