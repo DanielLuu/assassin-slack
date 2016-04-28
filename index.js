@@ -18,7 +18,7 @@ var AssassinBot = require('./assassinbot');
  */
 
 var assassinbot = new AssassinBot({
-    token: 'xoxb-36714040868-ONNi3nswEsqwwuqRFqdm3M22'
+    token: 'xoxb-36714040868-8061qPM5DJgelLGS0FwfZcI4'
 });
 
 assassinbot.run();
