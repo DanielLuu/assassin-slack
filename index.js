@@ -21,9 +21,9 @@ var assassinbot = new AssassinBot({
     token: 'xoxb-36714040868-8061qPM5DJgelLGS0FwfZcI4'
 });
 
-var http = require("http");
-setInterval(function() {
-    http.get("http://aqueous-eyrie-82878.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+// var http = require("http");
+// setInterval(function() {
+//     http.get("http://aqueous-eyrie-82878.herokuapp.com");
+// }, 300000); // every 5 minutes (300000)
 
 assassinbot.run();
