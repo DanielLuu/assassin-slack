@@ -22,3 +22,8 @@ var assassinbot = new AssassinBot({
 });
 
 assassinbot.run();
+
+var http = require("http");
+setInterval(function() {
+    http.get("http://aqueous-eyrie-82878.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
